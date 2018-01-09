@@ -36,14 +36,27 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['v1/user'],
+                    'pluralize' => false, //禁用复数形式
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['v1/default'],
+                    'extraPatterns' => [
+                        'POST login' => 'login',
+                        'POST signup' => 'signup',
+                    ],
+                    'pluralize' => false,
+                ],
             ],
-        ],
-        */
+        ]
     ],
     'params' => $params,
     'modules' => [
