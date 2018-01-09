@@ -79,12 +79,12 @@ class RestController extends ActiveController
     public function actions() {
         $actions = parent::actions();
         $actions['index'] = [
-            'class' => 'app\controllers\actions\IndexAction',
+            'class' => 'api\controllers\actions\IndexAction',
             'modelClass' => $this->modelClass,
             'checkAccess' => [$this, 'checkAccess'],
         ];
         $actions['delete'] = [
-            'class' => 'app\controllers\actions\DeleteAction',
+            'class' => 'api\controllers\actions\DeleteAction',
             'modelClass' => $this->modelClass,
             'checkAccess' => [$this, 'checkAccess'],
             'params' => Yii::$app->request->get()
