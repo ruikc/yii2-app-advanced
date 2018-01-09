@@ -1,9 +1,9 @@
 <?php
-namespace common\models;
+namespace backend\models;
 
 use Yii;
-use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
+use common\models\Base;
 
 /**
  * User model
@@ -21,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $expired_at
  * @property string $password write-only password
  */
-class User extends Base implements IdentityInterface
+class Admin extends Base implements IdentityInterface
 {
 
     /**
@@ -29,7 +29,7 @@ class User extends Base implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%user}}';
+        return '{{%admin}}';
     }
 
     /**

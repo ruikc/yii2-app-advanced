@@ -2,9 +2,15 @@
 
 use yii\db\Migration;
 
-class m130524_201442_init extends Migration
+/**
+ * Class m180109_022843_createTableAdmin
+ */
+class m180109_022843_createTableAdmin extends Migration
 {
-    public function up()
+    /**
+     * @inheritdoc
+     */
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -12,9 +18,9 @@ class m130524_201442_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%user}}', [
+        $this->createTable('{{%admin}}', [
             'id' => $this->primaryKey()->comment('用户ID'),
-            'username' => $this->string(20)->notNull()->unique()->defaultValue('')->comment('用户昵称'),
+            'username' => $this->string(20)->notNull()->unique()->defaultValue('')->comment('用户名'),
             'auth_key' => $this->string(32)->notNull()->defaultValue('')->comment('授权码'),
             'password_hash' => $this->string()->notNull()->defaultValue('')->comment('登录密码'),
             'password_reset_token' => $this->string()->unique()->comment('找回密码'),
@@ -27,11 +33,29 @@ class m130524_201442_init extends Migration
             'updated_at' => $this->integer()->notNull()->defaultValue(0)->comment('更新时间'),
         ], $tableOptions);
 
-        $this->addCommentOnTable('{{%user}}','用户信息表');
+        $this->addCommentOnTable('{{%admin}}','管理员信息表');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function safeDown()
+    {
+        $this->dropTable('{{%admin}}');
+    }
+
+    /*
+    // Use up()/down() to run migration code without a transaction.
+    public function up()
+    {
+
     }
 
     public function down()
     {
-        $this->dropTable('{{%user}}');
+        echo "m180109_022843_createTableAdmin cannot be reverted.\n";
+
+        return false;
     }
+    */
 }
